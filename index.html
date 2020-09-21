@@ -10,6 +10,7 @@
 
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
+  <script src="o9n.js"></script>
 
   <style>
     body {
@@ -72,7 +73,6 @@
       z-index: -1;
       filter: blur(14px);
     }
-
   </style>
 </head>
 <body>
@@ -93,6 +93,12 @@
       const startContainer = document.getElementById('start-container');
       const ringsContainer = document.querySelector('.rings-container');
       const button1 = document.getElementById('button1');
+      
+      window.o9n = getOrientation();
+
+      window.o9n.lock('landscape');
+
+      // window.screen.orientation.lock("landscape");
 
       let videoIsReadyToBePlayed = false;
       let videoUnMuted = false;
