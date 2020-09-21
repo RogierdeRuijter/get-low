@@ -16,6 +16,7 @@ function getOrientation() {
     orientation = screen.orientation;
   } else {
     orientation = createOrientation();
+    console.log(orientation);
   }
 
   return orientation;
