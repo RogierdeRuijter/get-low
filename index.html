@@ -15,6 +15,7 @@
     body {
       background-color: black;
     }
+
     #start-container {
       position: absolute; 
       top: calc(50% - 50px); 
@@ -79,7 +80,7 @@
       <div id="button-container">
         <div class="rings-container">
         </div>
-        <div class="button1">
+        <div id="button1" class="button1">
         </div>
     </div>
     </div>
@@ -89,23 +90,43 @@
       </video>
     <script>
       const video = document.getElementById('vid');
-      
+      const startContainer = document.getElementById('start-container');
+      const ringsContainer = document.querySelector('.rings-container');
+      const button1 = document.getElementById('button1');
+
       let videoIsReadyToBePlayed = false;
-      
+      let videoUnMuted = false;
+      let animationCounter = 0;
+
       video.oncanplay = () => {
         videoIsReadyToBePlayed = true;  
       };
+
+      console.log(ringsContainer);
+      
+      // TODO: remove animation code from javacsript and css
+      const animatedEndedRingsContainerHandler = () => {
+        console.log('in animation ended')
+        animationCounter += 1;
+
+        if (videoUnMuted === true) {
+          startContainer.style.display = 'none';
+        }
+      };
+
+      ringsContainer.onanimationiteration = animatedEndedRingsContainerHandler;
 
       let firstTimeClick = true;
 
       const clickListener = () => {
           if (firstTimeClick === true && videoIsReadyToBePlayed === true) {
-            video.muted = false;
+            button1.style.display = 'none';
+            // video.muted = false;
             video.currentTime = 0;
 
-            document.getElementById('start-container').style.visibility = 'hidden';
-            
             firstTimeClick = false;
+            videoUnMuted = true;
+            
           }
       };
 

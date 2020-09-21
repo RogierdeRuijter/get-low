@@ -30,13 +30,13 @@
     // box-shadow: 0 0 20px 0 rgba(250,250,210 ,1);
     cursor: pointer;
     
-    &::after {
-      @include rings(3s, 0s);
-    }
+    // &::after {
+    //   @include rings(3s, 0s);
+    // }
     
-    &::before {
-      @include rings(3s, 0.5s);
-    }
+    // &::before {
+    //   @include rings(3s, 0.5s);
+    // }
   }
   
   
