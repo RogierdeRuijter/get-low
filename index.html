@@ -123,15 +123,27 @@
       let firstTimeClick = true;
 
       const clickListener = () => {
-          if (firstTimeClick === true && videoIsReadyToBePlayed === true) {
-            button1.style.display = 'none';
-            video.muted = false;
-            video.currentTime = 0;
+        handleContinuationOfVideo();
+        
+        if (firstTimeClick === true && videoIsReadyToBePlayed === true) {
+          button1.style.display = 'none';
+          video.muted = false;
+          video.currentTime = 0;
 
-            firstTimeClick = false;
-            videoUnMuted = true;
-            
+          firstTimeClick = false;
+          videoUnMuted = true;
+          
+        }
+      };
+
+      const handleContinuationOfVideo = () => {
+        if (firstTimeClick === false) {
+          if (video.paused === false) {
+            video.pause();
+          } else {
+            video.play();
           }
+        }
       };
 
       document.addEventListener('click', clickListener);
