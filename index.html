@@ -35,7 +35,8 @@
       }
 
       #vid {
-        width: 100%;
+        max-width: 100%;
+        max-height: 100vh;
         z-index: 1;
       }
 
@@ -76,19 +77,26 @@
         z-index: -1;
         filter: blur(14px);
       }
+      #video-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
     </style>
   </head>
   <body>
-    <div id="start-container">
-      <div id="button-container">
-        <div class="rings-container"></div>
-        <div id="button1" class="button1"></div>
+    <div id="video-container">
+      <div id="start-container">
+        <div id="button-container">
+          <div class="rings-container"></div>
+          <div id="button1" class="button1"></div>
+        </div>
       </div>
+      <video id="vid" muted loop>
+        <!-- Source is set with javascript -->
+        Your browser does not support the video tag.
+      </video>
     </div>
-    <video id="vid" muted autoplay loop>
-      <source src="./assets/Mijn film.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
     <script>
       const video = document.getElementById("vid");
       const startContainer = document.getElementById("start-container");
@@ -98,6 +106,24 @@
       let videoIsReadyToBePlayed = false;
       let videoUnMuted = false;
       let animationCounter = 0;
+
+      var source = document.createElement("source");
+
+      const width =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
+
+      if (width < 960) {
+        source.setAttribute("src", "./assets/kanye_all_day_960x540.mp4");
+      } else if (width < 1280) {
+        source.setAttribute("src", "./assets/kanye_all_day_1280x720.mp4");
+      } else {
+        source.setAttribute("src", "./assets/kanye_all_day_1920x1080.mp4");
+      }
+
+      video.appendChild(source);
+      video.play();
 
       video.oncanplay = () => {
         videoIsReadyToBePlayed = true;
