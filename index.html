@@ -188,11 +188,11 @@
 
       function handleIntersect(entries, observer) {
         entries.forEach((entry) => {
-          console.log(entry);
           if (entry.intersectionRatio === 0) {
             video.pause();
             video.muted = true;
             button1.style.display = "flex";
+            firstTimeClick = true;
           }
 
           if (entry.intersectionRatio >= 0.8) {
