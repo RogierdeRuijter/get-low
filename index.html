@@ -124,7 +124,6 @@
 
       let videoIsReadyToBePlayed = false;
       let videoUnMuted = false;
-      let animationCounter = 0;
 
       var source = document.createElement("source");
 
@@ -147,17 +146,6 @@
       video.oncanplay = () => {
         videoIsReadyToBePlayed = true;
       };
-
-      // TODO: remove animation code from javacsript and css
-      const animatedEndedRingsContainerHandler = () => {
-        animationCounter += 1;
-
-        if (videoUnMuted === true) {
-          startContainer.style.display = "none";
-        }
-      };
-
-      ringsContainer.onanimationiteration = animatedEndedRingsContainerHandler;
 
       let firstTimeClick = true;
 
