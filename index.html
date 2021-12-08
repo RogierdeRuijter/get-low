@@ -185,6 +185,38 @@
       };
 
       document.addEventListener("click", clickListener);
+
+      function handleIntersect(entries, observer) {
+        entries.forEach((entry) => {
+          console.log(entry);
+          if (entry.intersectionRatio === 0) {
+            video.pause();
+            video.muted = true;
+            button1.style.display = "flex";
+          }
+
+          if (entry.intersectionRatio >= 0.8) {
+            video.play();
+          }
+        });
+      }
+
+      window.addEventListener(
+        "load",
+        (event) => {
+          videoElement = document.querySelector("#vid");
+
+          let options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: [0, 0.5, 1],
+          };
+
+          const observer = new IntersectionObserver(handleIntersect, options);
+          observer.observe(videoElement);
+        },
+        false
+      );
     </script>
   </body>
 </html>
