@@ -82,6 +82,8 @@
         justify-content: center;
         align-items: flex-start;
         height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
       }
     </style>
   </head>
@@ -120,6 +122,7 @@
       const video = document.getElementById("vid");
       const startContainer = document.getElementById("start-container");
       const ringsContainer = document.querySelector(".rings-container");
+      const videoContainer = document.getElementById("video-container");
       const button1 = document.getElementById("button1");
 
       let videoIsReadyToBePlayed = false;
@@ -136,14 +139,23 @@
         source.setAttribute("src", "./assets/kanye_all_day_960x540.mp4");
         video.setAttribute("width", "960");
         video.style.aspectRatio = "960/540";
+
+        videoContainer.style.backgroundImage =
+          'url("./assets/first_frame_960x540.jpg")';
       } else if (width < 1280) {
         source.setAttribute("src", "./assets/kanye_all_day_1280x720.mp4");
         video.setAttribute("width", "1280");
         video.style.aspectRatio = "1280/720";
+
+        videoContainer.style.backgroundImage =
+          'url("./assets/first_frame_1280x720.jpg")';
       } else {
         source.setAttribute("src", "./assets/kanye_all_day_1920x1080.mp4");
         video.setAttribute("width", "1920");
         video.style.aspectRatio = "1920/1080";
+        
+        videoContainer.style.backgroundImage =
+          'url("./assets/first_frame_1920x1080.jpg")';
       }
 
       video.appendChild(source);
